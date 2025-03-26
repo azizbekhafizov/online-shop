@@ -49,6 +49,19 @@ if (prevBtn && nextBtn && slider) {
 
 
 
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = totalCount;
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
+
+document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+        setTimeout(updateCartCount, 100); 
+    });
+});
 
 
 
@@ -74,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             localStorage.setItem("cart", JSON.stringify(cart));
-            alert("Product korzinkaga  qo'shildi");
+            
         });
     });
 

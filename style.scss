@@ -91,18 +91,24 @@ header {
                 margin-left: -20px;
             }
 
+            
             .search-icon {
+                position: relative;
+                top: 25px;
                 font-size: 20px;
                 margin-left: 35px;
                 display: flex;
 
                 i {
+                    margin-top: 205px;
                     margin-left: 25px;
                 }
             }
+
         }
     }
 }
+
 
 .home {
     display: flex;
@@ -370,26 +376,19 @@ header {
 
 
 
-#cart-items {
-    td, th {
-        padding: 10px;
-        text-align: center;
-    }
-
-    img {
-        border-radius: 5px;
-    }
-
-    .quantity {
-        width: 50px;
-        text-align: center;
-    }
-
-    .remove {
-        background: red;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-    }
+.cart-badge {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -25px;
+    right: -10px;
 }
+
