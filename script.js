@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             localStorage.setItem("cart", JSON.stringify(cart));
-            alert("Product added to cart!");
+            alert("Product korzinkaga  qo'shildi");
         });
     });
 
@@ -121,7 +121,7 @@ function renderCart() {
 function updateQuantity(event) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const product = cart.find(item => item.id === event.target.dataset.id);
-    
+
     if (product) {
         product.quantity = parseInt(event.target.value);
         localStorage.setItem("cart", JSON.stringify(cart));
