@@ -16,47 +16,27 @@
   </head>
   <body>
     <header>
-      <div class="header-top">
-        <p>
-          Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
-        </p>
-        <a href="#">ShopNow</a>
-      </div>
-
-      <div class="header-bottom">
-        <div class="logo">
-          <h1>Exclusive</h1>
+        <div class="header-top">
+            <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
+            <a href="#">ShopNow</a>
         </div>
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <a href="#">Home</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#">Contact</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#">About</a>
-          </li>
-          <li class="navbar-item">
-            <a href="#">Sign Up</a>
-          </li>
-        </ul>
-
-        <div class="search">
-          <input type="text" placeholder="What are you looking for?" /><i
-            class="fa-solid fa-magnifying-glass"
-          ></i>
-          <div class="search-icon">
-            <i class="fa-regular fa-heart"></i>
-            <a
-              style="text-decoration: none; color: black"
-              target="_blank"
-              href="./korzinka.html"
-              ><i class="fa-regular fa-cart-shopping"></i
-            ></a>
-          </div>
+        <div class="header-bottom">
+            <div class="logo"><h1>Exclusive</h1></div>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="#">Home</a></li>
+                <li class="navbar-item"><a href="#">Contact</a></li>
+                <li class="navbar-item"><a href="#">About</a></li>
+                <li class="navbar-item"><a href="#">Sign Up</a></li>
+            </ul>
+            <div class="search">
+                <input type="text" placeholder="What are you looking for?" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="search-icon">
+                    <i class="fa-regular fa-heart"></i>
+                    <a id="link" href="korzinka.html"><i class="fa-regular fa-cart-shopping"></i></a>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
 
     <div class="home container">
@@ -170,54 +150,55 @@
         <h1>Explore Our Products</h1>
       </div>
       <div class="products-wrapper">
-        <div class="card">
-          <img src="./imgs/Cart.png" alt="Gamepad" />
-          <p class="card-text">HAVIT HV-G92 Gamepad</p>
-          <p class="price">$120 <del>$160</del></p>
-          <button>Add To Cart</button>
+        <div class="card" data-id="1" data-name="HAVIT HV-G92 Gamepad" data-price="120" data-img="./imgs/Cart.png">
+            <img src="./imgs/Cart.png" alt="Gamepad" />
+            <p class="card-text">HAVIT HV-G92 Gamepad</p>
+            <p class="price">$120 <del>$160</del></p>
+            <button class="add-to-cart">Add To Cart</button>
         </div>
-        <div class="card">
+        
+        <div class="card" data-id="2" data-name="AK-900 Wired Keyboard" data-price="960" data-img="./imgs/Cart (2).png">
           <img src="./imgs/Cart (2).png" alt="Keyboard" />
           <p class="card-text">AK-900 Wired Keyboard</p>
           <p class="price">$960 <del>$1160</del></p>
-          <button>Add To Cart</button>
+          <button class="add-to-cart">Add To Cart</button>
         </div>
-        <div class="card">
+        <div class="card" data-id="3" data-name="IPS LCD Gaming Monitor" data-price="370" data-img="./imgs/Cart (3).png">
           <img src="./imgs/Cart (3).png" alt="Monitor" />
           <p class="card-text">IPS LCD Gaming Monitor</p>
           <p class="price">$370 <del>$400</del></p>
-          <button>Add To Cart</button>
+          <button class="add-to-cart">Add To Cart</button>
         </div>
-        <div class="card">
+        <div class="card" data-id="4" data-name="S-Series Comfort Chair" data-price="375" data-img="./imgs/Cart (4).png">
           <img src="./imgs/Cart (4).png" alt="Chair" />
           <p class="card-text">S-Series Comfort Chair</p>
           <p class="price">$375 <del>$400</del></p>
-          <button>Add To Cart</button>
+          <button class="add-to-cart">Add To Cart</button>
         </div>
-        <div class="card">
+        <div class="card" data-id="5" data-name="S-Series Comfort Chair" data-price="375" data-img="./imgs/Cart (5).png">
           <img src="./imgs/Cart (5).png" alt="Chair" />
           <p class="card-text">S-Series Comfort Chair</p>
           <p class="price">$375 <del>$400</del></p>
-          <button>Add To Cart</button>
+          <button class="add-to-cart">Add To Cart</button>
         </div>
-        <div class="card">
-          <img src="./imgs/Cart (6).png" alt="Chair" />
-          <p class="card-text">S-Series Comfort Chair</p>
-          <p class="price">$375 <del>$400</del></p>
-          <button>Add To Cart</button>
-        </div>
-        <div class="card">
-          <img src="./imgs/Cart (7).png" alt="Chair" />
-          <p class="card-text">S-Series Comfort Chair</p>
-          <p class="price">$375 <del>$400</del></p>
-          <button>Add To Cart</button>
-        </div>
-        <div class="card">
-          <img src="./imgs/Cart (2).png" alt="Chair" />
-          <p class="card-text">S-Series Comfort Chair</p>
-          <p class="price">$375 <del>$400</del></p>
-          <button>Add To Cart</button>
-        </div>
+        <div class="card" data-id="6" data-name="S-Series Comfort Chair" data-price="375" data-img="./imgs/Cart (5).png">
+            <img src="./imgs/Cart (5).png" alt="Chair" />
+            <p class="card-text">S-Series Comfort Chair</p>
+            <p class="price">$375 <del>$400</del></p>
+            <button class="add-to-cart">Add To Cart</button>
+          </div>
+          <div class="card" data-id="7" data-name="S-Series Comfort Chair" data-price="375" data-img="./imgs/Cart (5).png">
+            <img src="./imgs/Cart (5).png" alt="Chair" />
+            <p class="card-text">S-Series Comfort Chair</p>
+            <p class="price">$375 <del>$400</del></p>
+            <button class="add-to-cart">Add To Cart</button>
+          </div>
+          <div class="card" data-id="8" data-name="S-Series Comfort Chair" data-price="375" data-img="./imgs/Cart (5).png">
+            <img src="./imgs/Cart (5).png" alt="Chair" />
+            <p class="card-text">S-Series Comfort Chair</p>
+            <p class="price">$375 <del>$400</del></p>
+            <button class="add-to-cart">Add To Cart</button>
+          </div>
       </div>
       <button class="product-btn">View All Products</button>
     </div>

@@ -365,3 +365,31 @@ header {
         }
     }
 }
+
+
+
+
+
+#cart-items {
+    td, th {
+        padding: 10px;
+        text-align: center;
+    }
+
+    img {
+        border-radius: 5px;
+    }
+
+    .quantity {
+        width: 50px;
+        text-align: center;
+    }
+
+    .remove {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+}

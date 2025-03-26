@@ -322,4 +322,23 @@ header .header-bottom .search .search-icon i {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+}
+
+#cart-items td, #cart-items th {
+  padding: 10px;
+  text-align: center;
+}
+#cart-items img {
+  border-radius: 5px;
+}
+#cart-items .quantity {
+  width: 50px;
+  text-align: center;
+}
+#cart-items .remove {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
