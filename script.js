@@ -57,7 +57,7 @@ function updateCartCount() {
 
 document.addEventListener("DOMContentLoaded", updateCartCount);
 
-document.querySelectorAll(".add-to-cart").forEach(button => {
+document.querySelectorAll(".button-64").forEach(button => {
     button.addEventListener("click", () => {
         setTimeout(updateCartCount, 100); 
     });
@@ -68,7 +68,7 @@ document.querySelectorAll(".add-to-cart").forEach(button => {
 document.addEventListener("DOMContentLoaded", () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.querySelectorAll(".add-to-cart").forEach(button => {
+    document.querySelectorAll(".button-64").forEach(button => {
         button.addEventListener("click", () => {
             const card = button.closest(".card");
             const product = {
