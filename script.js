@@ -151,4 +151,18 @@ function removeFromCart(event) {
 
 
 
-console.log(localStorage.getItem("cart"));
+
+
+
+
+function modalFn() {
+    document.querySelector('.modal').style.display = "flex";
+}
+
+function closeModal(event) {
+    let modal = document.querySelector('.modal');
+
+    if (!event || event.target.classList.contains("modal")) {
+        modal.style.display = "none";
+    }
+}
