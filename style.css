@@ -201,6 +201,46 @@ header .header-bottom .search .search-icon i {
   margin-left: 25px;
 }
 
+@media (max-width: 1245px) {
+  header .header-bottom {
+    gap: 20px;
+  }
+  header .header-bottom .navbar-list {
+    gap: 20px;
+  }
+}
+@media (max-width: 768px) {
+  header .header-top p {
+    width: 350px;
+    text-align: center;
+  }
+  header .header-bottom .navbar-list {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  header .header-top {
+    height: 78px;
+    flex-direction: column;
+  }
+  header .header-top p {
+    width: 250px;
+    text-align: center;
+  }
+  header .header-bottom .logo h1 {
+    float: right;
+    margin-left: 45px;
+  }
+  header .header-bottom .search input {
+    display: none;
+  }
+  header .header-bottom .search .fa-solid {
+    display: none;
+  }
+  header .header-bottom .search .search-icon {
+    margin-left: 150px;
+  }
+}
 .home {
   display: flex;
   gap: 120px;
