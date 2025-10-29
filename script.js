@@ -1,170 +1,115 @@
-
-
-let hours = 3, minutes = 0, seconds = 0;
-function updateCountdown() {
-    if (seconds === 0) {
-        if (minutes === 0) {
-            if (hours === 0) {
-                clearInterval(timer);
-                return;
-            }
-            hours--;
-            minutes = 59;
-        } else {
-            minutes--;
-        }
-        seconds = 59;
-    } else {
-        seconds--;
-    }
-
-    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-}
-let timer = setInterval(updateCountdown, 1000);
-
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const slider = document.querySelector(".slider");
-
-if (prevBtn && nextBtn && slider) {
-    let position = 0;
-    const slideWidth = 220;
-
-    prevBtn.addEventListener("click", () => {
-        if (position < 0) {
-            position += slideWidth;
-            slider.style.transform = `translateX(${position}px)`;
-        }
-    });
-
-    nextBtn.addEventListener("click", () => {
-        if (Math.abs(position) < (slider.scrollWidth - slider.clientWidth)) {
-            position -= slideWidth;
-            slider.style.transform = `translateX(${position}px)`;
-        }
-    });
-}
-
-
-
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = totalCount;
-}
-
-document.addEventListener("DOMContentLoaded", updateCartCount);
-
-document.querySelectorAll(".button-64").forEach(button => {
-    button.addEventListener("click", () => {
-        setTimeout(updateCartCount, 100); 
-    });
-});
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    document.querySelectorAll(".button-64").forEach(button => {
-        button.addEventListener("click", () => {
-            const card = button.closest(".card");
-            const product = {
-                id: card.dataset.id,
-                name: card.dataset.name,
-                price: parseFloat(card.dataset.price),
-                img: card.dataset.img,
-                quantity: 1
-            };
-
-            const existingProduct = cart.find(item => item.id === product.id);
-            if (existingProduct) {
-                existingProduct.quantity++;
-            } else {
-                cart.push(product);
-            }
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-            
-        });
-    });
-
-    if (document.getElementById("cart-items")) {
-        renderCart();
-    }
-});
-
-function renderCart() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartItems = document.getElementById("cart-items");
-    const totalPriceElement = document.getElementById("total-price");
-
-    cartItems.innerHTML = "";
-    let totalPrice = 0;
-
-    cart.forEach(product => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td><img src="${product.img}" width="50"> ${product.name}</td>
-            <td>$${product.price}</td>
-            <td>
-                <input type="number" value="${product.quantity}" min="1" class="quantity" data-id="${product.id}">
-            </td>
-            <td>$${product.price * product.quantity}</td>
-            <td><button class="remove" data-id="${product.id}">X</button></td>
-        `;
-
-        cartItems.appendChild(row);
-        totalPrice += product.price * product.quantity;
-    });
-
-    totalPriceElement.textContent = totalPrice;
-
-    document.querySelectorAll(".quantity").forEach(input => {
-        input.addEventListener("change", updateQuantity);
-    });
-
-    document.querySelectorAll(".remove").forEach(button => {
-        button.addEventListener("click", removeFromCart);
-    });
-}
-
-function updateQuantity(event) {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const product = cart.find(item => item.id === event.target.dataset.id);
-
-    if (product) {
-        product.quantity = parseInt(event.target.value);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        renderCart();
-    }
-}
-
-function removeFromCart(event) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart = cart.filter(item => item.id !== event.target.dataset.id);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCart();
-}
-
-
-
-
-
-
-
+// Modal ochish
 function modalFn() {
-    document.querySelector('.modal').style.display = "flex";
+  const modal = document.querySelector(".modal");
+  if (modal) modal.style.display = "flex";
 }
 
+// Modal yopish
 function closeModal(event) {
-    let modal = document.querySelector('.modal');
+  const modal = document.querySelector(".modal");
+  if (!modal) return;
 
-    if (!event || event.target.classList.contains("modal")) {
-        modal.style.display = "none";
-    }
+  if (
+    event?.target?.classList?.contains("modal") ||
+    event?.target?.classList?.contains("close")
+  ) {
+    modal.style.display = "none";
+  }
 }
 
+// Savatdagi mahsulotlar
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Savat soni elementini olish
+const cartCount = document.getElementById("cart-count");
+
+// Cart sonini yangilash
+function updateCartCount() {
+  if (cartCount) {
+    cartCount.textContent = cart.length;
+  }
+}
+updateCartCount();
+
+// Har bir "Add to Cart" tugmasiga event biriktirish
+document.querySelectorAll(".button-64").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const card = e.target.closest(".card");
+
+    if (!card) {
+      console.warn("❗ .card topilmadi");
+      return;
+    }
+
+    // Agar kartada data atributlar bo'lmasa, ularni DOMdan o'qish
+    const product = {
+      id: card.dataset.id || Date.now().toString(),
+      name:
+        card.dataset.name ||
+        card.querySelector("h3")?.textContent?.trim() ||
+        "No name",
+      price:
+        card.dataset.price ||
+        card.querySelector("p")?.textContent?.replace("$", "")?.trim() ||
+        "0",
+      img:
+        card.dataset.img ||
+        card.querySelector("img")?.getAttribute("src") ||
+        "",
+    };
+
+    // Agar mahsulot allaqachon savatda bo‘lmasa, qo‘shish
+    const exists = cart.find((item) => item.id === product.id);
+
+    if (!exists) {
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+      alert(`${product.name} savatga qo‘shildi 🛒`);
+    } else {
+      alert(`${product.name} allaqachon savatda mavjud ✅`);
+    }
+  });
+});
+
+// Flash Sales uchun vaqt hisoblagich
+let hours = 3;
+let minutes = 0;
+let seconds = 0;
+
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+
+function updateTimer() {
+  if (!hoursEl || !minutesEl || !secondsEl) return;
+
+  if (seconds > 0) seconds--;
+  else if (minutes > 0) {
+    minutes--;
+    seconds = 59;
+  } else if (hours > 0) {
+    hours--;
+    minutes = 59;
+    seconds = 59;
+  } else {
+    clearInterval(timer);
+  }
+
+  hoursEl.textContent = String(hours).padStart(2, "0");
+  minutesEl.textContent = String(minutes).padStart(2, "0");
+  secondsEl.textContent = String(seconds).padStart(2, "0");
+}
+
+const timer = setInterval(updateTimer, 1000);
+
+// Sahifani yuklanganda Home, Sales, Products ko‘rsatish
+window.addEventListener("load", () => {
+  const home = document.querySelector(".home");
+  const sales = document.querySelector(".flash-sales");
+  const product = document.querySelector("#product");
+
+  if (home) home.style.display = "flex";
+  if (sales) sales.style.display = "block";
+  if (product) product.style.display = "block";
+});
